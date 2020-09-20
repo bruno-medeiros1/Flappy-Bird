@@ -7,7 +7,7 @@ public class Level : MonoBehaviour
     private const float CAMERA_ORTHO_SIZE = 50f;//tamanho da nossa camera ortografica para sabermos como spawnar os pipes
 
     private const float PIPE_WIDTH = 7.8f; //largura do nosso cano principal
-    private const float PIPEHEAD_HEIGHT = 3.75f;// altura da head cano
+    private const float PIPEHEAD_HEIGHT = 3.8f;// altura da head cano
     private const float PIPE_MOVE_SPEED = 25f;//velocidade do PIPE
     private const float PIPE_DESTROY_X_POS = -40f;//Posicao do x onde os pipes tem de ser destruidos
     private const float PIPE_SPAWN_X_POS = +40f;//Posicao do x onde os pipes tem de ser spawnados
@@ -58,7 +58,8 @@ public class Level : MonoBehaviour
 
     private void Start()
     {
-        //CreateGapPipes(50, 20, 12);
+        CreateGapPipes(50, 20, 12);
+        //CreatePip(50, -12, true);
         //subscribe to the event on Bird Class
         Bird.GetInstance().OnDied += Level_onDied;
         Bird.GetInstance().OnStartedPlaying += Level_onStart;
@@ -286,16 +287,17 @@ public class Level : MonoBehaviour
         Transform PipeHead = Instantiate(GameAssets.GetInstance().PipeHead_Pref);
 
         float PipeHeadYPos;//variavel responsavel por guardar a posicao no y do nosso sprite PipeHead
-        
+        float offset = 0.1f;
+
         if (CreateBottom) 
         {
             /*Vamos criar em baixo se estiver true*/
-            PipeHeadYPos = -CAMERA_ORTHO_SIZE + height + (PIPEHEAD_HEIGHT * 0.5f);
+            PipeHeadYPos = -CAMERA_ORTHO_SIZE + height + (PIPEHEAD_HEIGHT * 0.5f - offset);
         }
         else 
         {
             /*Vamos criar em cima se estiver falso*/
-            PipeHeadYPos = +CAMERA_ORTHO_SIZE - height - (PIPEHEAD_HEIGHT * 0.5f);
+            PipeHeadYPos = +CAMERA_ORTHO_SIZE - height - (PIPEHEAD_HEIGHT * 0.5f - offset);
         }
 
         /*A pipeHead vai ter de ser posicionada da seguinte forma:

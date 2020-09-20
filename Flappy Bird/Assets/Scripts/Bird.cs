@@ -112,6 +112,7 @@ public class Bird : MonoBehaviour
        
         r.bodyType = RigidbodyType2D.Static;//para o jogador parar
         SoundManager.GetInstance().Play("Die");
+        state = State.Dead;
         //Ativamos o nosso evento
         if (OnDied != null) OnDied(this, EventArgs.Empty);
     }
