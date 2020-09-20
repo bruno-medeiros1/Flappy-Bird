@@ -9,7 +9,7 @@ public class Bird : MonoBehaviour
     public event EventHandler OnDied;
     public event EventHandler OnStartedPlaying;
 
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D r;
     private Touch touch;
 
     /*Instancia da Classe */
@@ -25,8 +25,8 @@ public class Bird : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        rigidbody = GetComponent<Rigidbody2D>();
-        rigidbody.bodyType = RigidbodyType2D.Static;
+        r = GetComponent<Rigidbody2D>();
+        r.bodyType = RigidbodyType2D.Static;
         state = State.WaitingToPlay;
 
     }
@@ -41,7 +41,7 @@ public class Bird : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0))
                 {
                     state = State.Playing;
-                    rigidbody.bodyType = RigidbodyType2D.Dynamic;
+                    r.bodyType = RigidbodyType2D.Dynamic;
                     Jump();
                     /*Inicializamos o Evento*/
                     if (OnStartedPlaying != null) OnStartedPlaying(this, EventArgs.Empty);
@@ -55,7 +55,7 @@ public class Bird : MonoBehaviour
                     
                 }
                 //permite fazer com que o passaro va cair se nao saltarmos
-                transform.eulerAngles = new Vector3(0, 0, rigidbody.velocity.y * .1f);
+                transform.eulerAngles = new Vector3(0, 0, r.velocity.y * .1f);
 
                 break;
             case State.Dead:
@@ -76,7 +76,7 @@ public class Bird : MonoBehaviour
                     if (touch.phase == TouchPhase.Began)
                     {
                         state = State.Playing;
-                        rigidbody.bodyType = RigidbodyType2D.Dynamic;
+                        r.bodyType = RigidbodyType2D.Dynamic;
                         Jump();
                         /*Inicializamos o Evento*/
                         if (OnStartedPlaying != null) OnStartedPlaying(this, EventArgs.Empty);
@@ -89,7 +89,7 @@ public class Bird : MonoBehaviour
                         Jump();
                     }
                     //permite fazer com que o passaro va cair se nao saltarmos
-                    transform.eulerAngles = new Vector3(0, 0, rigidbody.velocity.y * .2f);
+                    transform.eulerAngles = new Vector3(0, 0, r.velocity.y * .2f);
 
                     break;
                 case State.Dead:
@@ -103,14 +103,14 @@ public class Bird : MonoBehaviour
     /*Função responsável pelo Salto do Bird*/
     private void Jump() 
     {
-        rigidbody.velocity = Vector2.up * JUMP_SPEED;
+        r.velocity = Vector2.up * JUMP_SPEED;
         SoundManager.GetInstance().Play("Jump");
     }
     /*Quando o jogador */
     private void OnTriggerEnter2D(Collider2D collision)
     {
        
-        rigidbody.bodyType = RigidbodyType2D.Static;//para o jogador parar
+        r.bodyType = RigidbodyType2D.Static;//para o jogador parar
         SoundManager.GetInstance().Play("Die");
         //Ativamos o nosso evento
         if (OnDied != null) OnDied(this, EventArgs.Empty);
