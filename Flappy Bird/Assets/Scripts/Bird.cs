@@ -87,10 +87,9 @@ public class Bird : MonoBehaviour
                     if (touch.phase == TouchPhase.Began)
                     {
                         Jump();
-
                     }
                     //permite fazer com que o passaro va cair se nao saltarmos
-                    transform.eulerAngles = new Vector3(0, 0, rigidbody.velocity.y * .1f);
+                    transform.eulerAngles = new Vector3(0, 0, rigidbody.velocity.y * .2f);
 
                     break;
                 case State.Dead:
@@ -112,7 +111,6 @@ public class Bird : MonoBehaviour
     {
        
         rigidbody.bodyType = RigidbodyType2D.Static;//para o jogador parar
-
         SoundManager.GetInstance().Play("Die");
         //Ativamos o nosso evento
         if (OnDied != null) OnDied(this, EventArgs.Empty);
