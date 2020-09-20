@@ -58,8 +58,7 @@ public class Level : MonoBehaviour
 
     private void Start()
     {
-        CreateGapPipes(50, 20, 12);
-        //CreatePip(50, -12, true);
+        
         //subscribe to the event on Bird Class
         Bird.GetInstance().OnDied += Level_onDied;
         Bird.GetInstance().OnStartedPlaying += Level_onStart;
