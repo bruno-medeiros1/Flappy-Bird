@@ -2,4 +2,4 @@
 
 Simple version of Flappy Bird.
 
-Credits to CodeMonkey.
+Credits to CodeMonkey :)
