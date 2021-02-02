@@ -20,7 +20,7 @@ The goal is not to hit the pipes by **`clicking`** in the screen to jump. Also i
 
 ## **Observations**
 
-***Credits goes to CodeMonkey***: https://unitycodemonkey.com/video.php?v=b5Wpni9KPik
+1. ***Credits goes to CodeMonkey***: https://unitycodemonkey.com/video.php?v=b5Wpni9KPik
 
 
 ### ***Have fun! :stuck_out_tongue_winking_eye:*** 
