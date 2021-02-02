@@ -18,6 +18,8 @@ The goal is not to hit the pipes by **`clicking`** in the screen to jump. Also i
 - **`DONE`** Highscore save and load system.
 - **`DONE`** Waiting to start state.
 
+## **Observations**
+
 ***Credits goes to CodeMonkey***: https://unitycodemonkey.com/video.php?v=b5Wpni9KPik
 
 
